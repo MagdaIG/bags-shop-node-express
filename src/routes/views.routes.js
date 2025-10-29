@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { User, Order } = require('../db');
 
-// PÃgina principal
+// Pï¿½gina principal
 router.get('/', async (req, res) => {
   try {
-    // Obtener estadÃ­sticas bÃsicas
+    // Obtener estadÃ­sticas bï¿½sicas
     const totalUsers = await User.count();
     const totalOrders = await Order.count();
     const recentOrders = await Order.findAll({
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
       recentOrders
     });
   } catch (error) {
-    console.error('Error en pÃgina principal:', error);
+    console.error('Error en pï¿½gina principal:', error);
     res.render('index', {
       title: 'Handmade Bags Store',
       stats: { totalUsers: 0, totalOrders: 0 },
@@ -187,7 +187,7 @@ router.get('/usuarios/:id/pedidos', async (req, res) => {
 // Vista de productos
 router.get('/productos', (req, res) => {
   res.render('productos', {
-    title: 'CatÃlogo de Productos'
+    title: 'Catï¿½logo de Productos'
   });
 });
 

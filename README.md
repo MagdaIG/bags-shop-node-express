@@ -22,12 +22,13 @@ Esta aplicación web está desarrollada con **Node.js**, **Express**, **Sequeliz
 ## Tecnologías Utilizadas
 
 - **Backend**: Node.js, Express.js
-- **Base de Datos**: SQLite con Sequelize ORM
+- **Base de Datos**: PostgreSQL con Sequelize ORM
 - **Frontend**: EJS, Bootstrap 5, CSS personalizado
 - **Validación**: express-validator
 - **Seguridad**: bcryptjs para hash de contraseñas
 - **Logging**: morgan
 - **Desarrollo**: nodemon
+- **Contenedores**: Docker y Docker Compose
 
 ## Instalación y Configuración
 
@@ -77,9 +78,66 @@ npm run dev
 http://localhost:3001
 ```
 
-### Opción 2: Usando Docker (Alternativa)
+### Documentación Técnica HTML
 
-Si prefieres usar Docker, también puedes ejecutar la aplicación con:
+El proyecto incluye documentación técnica completa en formato HTML ubicada en la carpeta `docs/`. Puedes abrir cualquiera de estos archivos en tu navegador para obtener información detallada:
+
+- **`docs/index.html`** - Documentación principal del proyecto
+- **`docs/architecture.html`** - Arquitectura del sistema y diagramas
+- **`docs/database.html`** - Estructura de la base de datos y relaciones
+- **`docs/api-docs.html`** - Documentación completa de la API REST
+- **`docs/readme.html`** - Versión HTML del README con mejor formato
+
+Para acceder a la documentación:
+```bash
+# Abrir la documentación principal
+open docs/index.html
+
+# O simplemente hacer doble clic en cualquier archivo HTML de la carpeta docs/
+```
+
+### Opción 2: Usando Docker Compose (Recomendado para PostgreSQL)
+
+Para usar PostgreSQL con Docker Compose:
+
+1. **Iniciar PostgreSQL con Docker Compose**
+```bash
+docker-compose up -d postgres
+```
+
+2. **Configurar variables de entorno**
+```bash
+cp env.example .env
+# Editar .env con las credenciales de PostgreSQL:
+# DB_HOST=localhost
+# DB_PORT=5432
+# DB_NAME=tienda_online
+# DB_USER=postgres
+# DB_PASSWORD=lalala
+```
+
+3. **Instalar dependencias y configurar la base de datos**
+```bash
+npm install
+npm run db:sync
+npm run db:seed
+```
+
+4. **Iniciar la aplicación**
+```bash
+npm run dev
+```
+
+5. **Acceder a pgAdmin (opcional)**
+```
+http://localhost:8080
+Email: admin@tienda.com
+Password: admin123
+```
+
+### Opción 3: Docker Completo
+
+Si prefieres ejecutar todo con Docker:
 
 ```bash
 # Construir la imagen
@@ -107,22 +165,37 @@ npm start           # Inicia servidor en producción
 
 ```
 bags-shop-node-express/
-├── app.js                 # Aplicación principal
-├── package.json           # Dependencias y scripts
-├── .env                   # Variables de entorno
-├── database.sqlite        # Base de datos SQLite
-├── public/                # Archivos estáticos
+├── src/                   # Código fuente de la aplicación
+│   ├── app.js             # Aplicación principal
+│   ├── config/            # Configuración
+│   │   └── database.js    # Configuración de PostgreSQL
+│   ├── controllers/       # Controladores
+│   │   ├── users.controller.js
+│   │   └── orders.controller.js
+│   ├── db/               # Base de datos
+│   │   ├── models/       # Modelos Sequelize
+│   │   │   ├── User.js
+│   │   │   └── Order.js
+│   │   ├── seed/         # Datos de ejemplo
+│   │   └── index.js      # Configuración de BD
+│   ├── middleware/       # Middleware personalizado
+│   ├── routes/           # Rutas de la aplicación
+│   └── views/            # Plantillas EJS
+├── docs/                 # Documentación técnica HTML
+│   ├── index.html        # Documentación principal
+│   ├── architecture.html # Arquitectura del sistema
+│   ├── database.html     # Estructura de la base de datos
+│   ├── api-docs.html     # Documentación de la API
+│   └── readme.html       # Documentación del README
+├── public/               # Archivos estáticos
 │   ├── css/
-│   │   └── theme.css      # Estilos personalizados
-│   └── img/               # Imágenes de productos
-├── views/                 # Plantillas EJS
-│   ├── layout.ejs         # Layout principal
-│   ├── index.ejs          # Página de inicio
-│   ├── productos.ejs      # Catálogo de productos
-│   ├── acerca.ejs         # Página "Acerca de"
-│   ├── usuarios/          # Vistas de usuarios
-│   └── pedidos/           # Vistas de pedidos
-└── README.md              # Este archivo
+│   │   └── theme.css     # Estilos personalizados
+│   └── img/              # Imágenes de productos
+├── docker/               # Configuración de Docker
+├── package.json          # Dependencias y scripts
+├── docker-compose.yml    # Configuración de PostgreSQL
+├── env.example           # Variables de entorno de ejemplo
+└── README.md             # Este archivo
 ```
 
 ## Base de Datos
@@ -336,7 +409,8 @@ curl http://localhost:3001/api/pedidos
 - [x] Node.js configurado
 - [x] Sequelize como ORM instalado
 - [x] Variables de entorno configuradas (.env)
-- [x] Base de datos SQLite configurada
+- [x] Base de datos PostgreSQL configurada con Docker
+- [x] Docker Compose para facilitar el despliegue
 
 ### Definición de Modelos con Sequelize
 - [x] Modelo Usuario con campos: id, nombre, email, contraseña
