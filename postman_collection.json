@@ -1,0 +1,359 @@
+{
+  "info": {
+    "name": "Handmade Bags Store API",
+    "description": "API REST completa para gestión de usuarios y pedidos de tienda de handmade bags artesanales",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "Crear Usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"María García\",\n  \"email\": \"maria@example.com\",\n  \"password\": \"MiPassword123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "usuarios"]
+            },
+            "description": "Crea un nuevo usuario con validaciones completas"
+          }
+        },
+        {
+          "name": "Obtener Todos los Usuarios",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/api/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "usuarios"]
+            },
+            "description": "Obtiene la lista completa de usuarios"
+          }
+        },
+        {
+          "name": "Obtener Usuario por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/api/usuarios/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "usuarios", "1"]
+            },
+            "description": "Obtiene un usuario específico por su ID"
+          }
+        },
+        {
+          "name": "Actualizar Usuario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"María García López\",\n  \"email\": \"maria.lopez@example.com\",\n  \"password\": \"NuevaPassword123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/usuarios/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "usuarios", "1"]
+            },
+            "description": "Actualiza los datos de un usuario existente"
+          }
+        },
+        {
+          "name": "Eliminar Usuario",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3001/api/usuarios/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "usuarios", "1"]
+            },
+            "description": "Elimina un usuario y todos sus pedidos asociados"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedidos",
+      "item": [
+        {
+          "name": "Crear Pedido",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario_id\": 1,\n  \"producto\": \"Makeup Bag Lavender\",\n  \"cantidad\": 2\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/pedidos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "pedidos"]
+            },
+            "description": "Crea un nuevo pedido con transacción para garantizar consistencia"
+          }
+        },
+        {
+          "name": "Obtener Todos los Pedidos",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/api/pedidos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "pedidos"]
+            },
+            "description": "Obtiene la lista completa de pedidos con información del usuario"
+          }
+        },
+        {
+          "name": "Obtener Pedidos de Usuario",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/api/pedidos/usuario/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "pedidos", "usuario", "1"]
+            },
+            "description": "Obtiene todos los pedidos de un usuario específico"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vistas Web",
+      "item": [
+        {
+          "name": "Página Principal",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": [""]
+            },
+            "description": "Página principal con productos destacados y estadísticas"
+          }
+        },
+        {
+          "name": "Catálogo de Productos",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["productos"]
+            },
+            "description": "Catálogo completo de productos artesanales"
+          }
+        },
+        {
+          "name": "Gestión de Usuarios",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["usuarios"]
+            },
+            "description": "Lista de usuarios con sus pedidos asociados"
+          }
+        },
+        {
+          "name": "Gestión de Pedidos",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/pedidos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["pedidos"]
+            },
+            "description": "Lista completa de pedidos con información de usuarios"
+          }
+        },
+        {
+          "name": "Crear Usuario (Formulario)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/usuarios/crear",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["usuarios", "crear"]
+            },
+            "description": "Formulario para crear nuevo usuario"
+          }
+        },
+        {
+          "name": "Crear Pedido (Formulario)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3001/pedidos/crear",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["pedidos", "crear"]
+            },
+            "description": "Formulario para crear nuevo pedido"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pruebas de Validación",
+      "item": [
+        {
+          "name": "Crear Usuario - Email Duplicado",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Usuario Test\",\n  \"email\": \"magda@example.com\",\n  \"password\": \"Test123456\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "usuarios"]
+            },
+            "description": "Prueba de validación: email duplicado (debe retornar error 409)"
+          }
+        },
+        {
+          "name": "Crear Usuario - Password Inválida",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Usuario Test\",\n  \"email\": \"test@example.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/usuarios",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "usuarios"]
+            },
+            "description": "Prueba de validación: password sin número (debe retornar error 400)"
+          }
+        },
+        {
+          "name": "Crear Pedido - Usuario Inexistente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario_id\": 999,\n  \"producto\": \"Producto Test\",\n  \"cantidad\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/pedidos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "pedidos"]
+            },
+            "description": "Prueba de transacción: usuario inexistente (debe retornar error 404)"
+          }
+        },
+        {
+          "name": "Crear Pedido - Cantidad Inválida",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario_id\": 1,\n  \"producto\": \"Producto Test\",\n  \"cantidad\": 0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/pedidos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["api", "pedidos"]
+            },
+            "description": "Prueba de validación: cantidad inválida (debe retornar error 400)"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3001",
+      "type": "string"
+    }
+  ]
+}

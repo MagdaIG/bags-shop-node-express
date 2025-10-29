@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - Handmade Bags Store</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Tema personalizado -->
+    <link href="/css/theme.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-shopping-bag me-2"></i>
+                Handmade Bags Store
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home me-1"></i>
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/usuarios">
+                            <i class="fas fa-users me-1"></i>
+                            Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pedidos">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            Pedidos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/productos">
+                            <i class="fas fa-gem me-1"></i>
+                            Productos
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-plus me-1"></i>
+                            Crear
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/usuarios/crear">
+                                <i class="fas fa-user-plus me-2"></i>Nuevo Usuario
+                            </a></li>
+                            <li><a class="dropdown-item" href="/pedidos/crear">
+                                <i class="fas fa-cart-plus me-2"></i>Nuevo Pedido
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main style="margin-top: 80px;">
+        <!-- Header -->
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="text-gradient">
+                                <i class="fas fa-user-edit me-2"></i>
+                                <%= title %>
+                            </h1>
+                            <p class="text-muted">Modifica la información del usuario</p>
+                        </div>
+                        <a href="/usuarios" class="btn btn-secondary btn-custom">
+                            <i class="fas fa-arrow-left me-2"></i>
+                            Volver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="container mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card card-custom">
+                        <div class="card-header-custom">
+                            <h4 class="mb-0">
+                                <i class="fas fa-user-edit me-2"></i>
+                                Editar Usuario
+                            </h4>
+                        </div>
+                        <div class="card-body-custom">
+                            <form id="userForm" action="/api/usuarios/<%= user.id %>" method="POST">
+                                <input type="hidden" name="_method" value="PUT">
+
+                                <div class="mb-4">
+                                    <label for="nombre" class="form-label form-label-custom">
+                                        <i class="fas fa-user me-1"></i>
+                                        Nombre Completo
+                                    </label>
+                                    <input type="text"
+                                           class="form-control form-control-custom"
+                                           id="nombre"
+                                           name="nombre"
+                                           required
+                                           minlength="2"
+                                           maxlength="60"
+                                           value="<%= user.nombre %>"
+                                           placeholder="Ingresa el nombre completo">
+                                    <div class="invalid-feedback">
+                                        El nombre debe tener entre 2 y 60 caracteres
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="email" class="form-label form-label-custom">
+                                        <i class="fas fa-envelope me-1"></i>
+                                        Correo Electrónico
+                                    </label>
+                                    <input type="email"
+                                           class="form-control form-control-custom"
+                                           id="email"
+                                           name="email"
+                                           required
+                                           maxlength="100"
+                                           value="<%= user.email %>"
+                                           placeholder="usuario@ejemplo.com">
+                                    <div class="invalid-feedback">
+                                        Debe ser un email válido
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="password" class="form-label form-label-custom">
+                                        <i class="fas fa-lock me-1"></i>
+                                        Nueva Contraseña (Opcional)
+                                    </label>
+                                    <input type="password"
+                                           class="form-control form-control-custom"
+                                           id="password"
+                                           name="password"
+                                           minlength="8"
+                                           placeholder="Deja vacío para mantener la contraseña actual">
+                                    <div class="invalid-feedback">
+                                        La contraseña debe tener al menos 8 caracteres y contener al menos un número
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Deja vacío si no quieres cambiar la contraseña
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a href="/usuarios" class="btn btn-secondary btn-custom me-md-2">
+                                        <i class="fas fa-times me-2"></i>
+                                        Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-save me-2"></i>
+                                        Actualizar Usuario
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-custom">
+                        <div class="card-header-custom">
+                            <h5 class="mb-0">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Información Importante
+                            </h5>
+                        </div>
+                        <div class="card-body-custom">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-user-check me-2"></i>Datos del Usuario</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i>Nombre completo requerido</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Email único y válido</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Contraseña segura opcional</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-shield-alt me-2"></i>Seguridad</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-lock text-warning me-2"></i>Contraseña mínimo 8 caracteres</li>
+                                        <li><i class="fas fa-key text-warning me-2"></i>Debe contener al menos un número</li>
+                                        <li><i class="fas fa-envelope text-info me-2"></i>Email debe ser único</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-shopping-bag me-2"></i>Handmade Bags Store</h5>
+                    <p class="mb-0">Tienda online de handmade bags con gestión completa de usuarios y pedidos. <strong>Cada producto es único y hecho a mano</strong>.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h6 class="mb-3">Magdalena Inalaf G.</h6>
+                    <p class="mb-2">Desarrolladora Fullstack</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="https://www.linkedin.com/in/minalaf/" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-linkedin me-1"></i>LinkedIn
+                        </a>
+                        <a href="https://github.com/MagdaIG" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                        <a href="https://inalaf.ca/" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-globe me-1"></i>Portfolio
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <p class="mb-0">
+                        <i class="fas fa-code me-1"></i>
+                        Desarrollado con Node.js, Express, Sequelize y Bootstrap 5
+                    </p>
+                    <small>&copy; 2024 Todos los derechos reservados.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts personalizados -->
+    <script>
+        // Función para mostrar alertas
+        function showAlert(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type === 'success' ? 'success' : type === 'danger' ? 'danger' : type === 'warning' ? 'warning' : 'info'} alert-dismissible fade show position-fixed`;
+            alertDiv.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 300px;';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 5000);
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('userForm');
+
+            // Envío del formulario
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Preparar datos
+                const formData = {
+                    nombre: document.getElementById('nombre').value.trim(),
+                    email: document.getElementById('email').value.trim()
+                };
+
+                // Solo incluir password si no está vacío
+                const password = document.getElementById('password').value.trim();
+                if (password && password.length > 0) {
+                    formData.password = password;
+                }
+
+                // Debug: mostrar datos que se van a enviar
+                console.log('Datos a enviar:', formData);
+
+                // Enviar petición
+                fetch('/api/usuarios/<%= user.id %>', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    return response.json().then(data => {
+                        if (!response.ok) {
+                            // Mostrar errores de validación específicos
+                            if (data.errors && data.errors.length > 0) {
+                                const errorMessages = data.errors.map(error => error.msg || error.message).join(', ');
+                                throw new Error('Errores de validación: ' + errorMessages);
+                            }
+                            throw new Error(data.message || 'Error del servidor');
+                        }
+                        return data;
+                    });
+                })
+                .then(data => {
+                    if (data.success) {
+                        showAlert('Usuario actualizado exitosamente', 'success');
+                        setTimeout(() => {
+                            window.location.href = '/usuarios';
+                        }, 1500);
+                    } else {
+                        showAlert('Error al actualizar usuario: ' + data.message, 'danger');
+                    }
+                })
+                .catch(error => {
+                    showAlert('Error al actualizar usuario: ' + error.message, 'danger');
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Pedido - Handmade Bags Store</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Tema personalizado -->
+    <link href="/css/theme.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-shopping-bag me-2"></i>
+                Handmade Bags Store
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home me-1"></i>
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/usuarios">
+                            <i class="fas fa-users me-1"></i>
+                            Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/pedidos">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            Pedidos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/productos">
+                            <i class="fas fa-gem me-1"></i>
+                            Productos
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-plus me-1"></i>
+                            Crear
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/usuarios/crear">
+                                <i class="fas fa-user-plus me-2"></i>Nuevo Usuario
+                            </a></li>
+                            <li><a class="dropdown-item" href="/pedidos/crear">
+                                <i class="fas fa-cart-plus me-2"></i>Nuevo Pedido
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main style="margin-top: 80px;">
+        <!-- Header -->
+        <div class="container mb-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="text-gradient">
+                                <i class="fas fa-cart-plus me-2"></i>
+                                Crear Pedido
+                            </h1>
+                            <p class="text-muted">Registra un nuevo pedido en la plataforma</p>
+                        </div>
+                        <a href="/pedidos" class="btn btn-secondary btn-custom">
+                            <i class="fas fa-arrow-left me-2"></i>
+                            Volver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card card-custom">
+                        <div class="card-header-custom">
+                            <h4 class="mb-0">
+                                <i class="fas fa-cart-plus me-2"></i>
+                                Información del Pedido
+                            </h4>
+                        </div>
+                        <div class="card-body-custom">
+                            <form id="orderForm" action="/api/pedidos" method="POST">
+                                <div class="mb-4">
+                                    <label for="usuario_id" class="form-label form-label-custom">
+                                        <i class="fas fa-user me-1"></i>
+                                        Cliente
+                                    </label>
+                                    <select class="form-control form-control-custom"
+                                            id="usuario_id"
+                                            name="usuario_id"
+                                            required>
+                                        <option value="">Selecciona un cliente</option>
+                                        <!-- Los usuarios se cargarán aquí dinámicamente -->
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Debes seleccionar un cliente
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="producto" class="form-label form-label-custom">
+                                        <i class="fas fa-shopping-bag me-1"></i>
+                                        Producto
+                                    </label>
+                                    <select class="form-control form-control-custom"
+                                            id="producto"
+                                            name="producto"
+                                            required>
+                                        <option value="">Selecciona un producto</option>
+                                        <option value="Book Quilted Bag">Book Quilted Bag</option>
+                                        <option value="Drawstring Bag">Drawstring Bag</option>
+                                        <option value="Drawstring Minibag">Drawstring Minibag</option>
+                                        <option value="Laptop Quilted Bag">Laptop Quilted Bag</option>
+                                        <option value="Makeup Bag Lavender">Makeup Bag Lavender</option>
+                                        <option value="Makeup Quilted">Makeup Quilted</option>
+                                        <option value="Mini Pouch">Mini Pouch</option>
+                                        <option value="Money Bag">Money Bag</option>
+                                        <option value="Round Bag">Round Bag</option>
+                                        <option value="Scrunchies">Scrunchies</option>
+                                        <option value="Tote Bag">Tote Bag</option>
+                                        <option value="Mini Bag Quilted">Mini Bag Quilted</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Debes seleccionar un producto
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        También puedes escribir un producto personalizado
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="productoPersonalizado" class="form-label form-label-custom">
+                                        <i class="fas fa-edit me-1"></i>
+                                        Producto Personalizado
+                                    </label>
+                                    <input type="text"
+                                           class="form-control form-control-custom"
+                                           id="productoPersonalizado"
+                                           name="productoPersonalizado"
+                                           placeholder="Escribe un producto personalizado">
+                                    <div class="form-text">
+                                        <i class="fas fa-lightbulb me-1"></i>
+                                        Si escribes aquí, se usará en lugar del producto seleccionado
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="cantidad" class="form-label form-label-custom">
+                                        <i class="fas fa-sort-numeric-up me-1"></i>
+                                        Cantidad
+                                    </label>
+                                    <input type="number"
+                                           class="form-control form-control-custom"
+                                           id="cantidad"
+                                           name="cantidad"
+                                           min="1"
+                                           max="100"
+                                           value="1"
+                                           required>
+                                    <div class="invalid-feedback">
+                                        La cantidad debe ser entre 1 y 100
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="precio_unitario" class="form-label form-label-custom">
+                                        <i class="fas fa-euro-sign me-1"></i>
+                                        Precio Unitario (Opcional)
+                                    </label>
+                                    <input type="number"
+                                           class="form-control form-control-custom"
+                                           id="precio_unitario"
+                                           name="precio_unitario"
+                                           min="0"
+                                           step="0.01"
+                                           placeholder="0.00">
+                                    <div class="invalid-feedback">
+                                        El precio debe ser un número positivo
+                                    </div>
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Deja vacío si no conoces el precio
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="fecha_pedido" class="form-label form-label-custom">
+                                        <i class="fas fa-calendar me-1"></i>
+                                        Fecha del Pedido
+                                    </label>
+                                    <input type="date"
+                                           class="form-control form-control-custom"
+                                           id="fecha_pedido"
+                                           name="fecha_pedido"
+                                           value="${new Date().toISOString().split('T')[0]}">
+                                    <div class="form-text">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Por defecto se usa la fecha actual
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a href="/pedidos" class="btn btn-secondary btn-custom me-md-2">
+                                        <i class="fas fa-times me-2"></i>
+                                        Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-save me-2"></i>
+                                        Crear Pedido
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información adicional -->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-custom">
+                        <div class="card-header-custom">
+                            <h5 class="mb-0">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Información Importante
+                            </h5>
+                        </div>
+                        <div class="card-body-custom">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-shield-alt me-2"></i>Transacciones Seguras</h6>
+                                    <p class="text-muted small">
+                                        Todos los pedidos se crean usando transacciones de base de datos para garantizar la consistencia de los datos.
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-link me-2"></i>Relaciones Automáticas</h6>
+                                    <p class="text-muted small">
+                                        Los pedidos se vinculan automáticamente con el usuario seleccionado y se pueden consultar desde su perfil.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-shopping-bag me-2"></i>Handmade Bags Store</h5>
+                    <p class="mb-0">Tienda online de handmade bags con gestión completa de usuarios y pedidos. <strong>Cada producto es único y hecho a mano</strong>.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h6 class="mb-3">Magdalena Inalaf G.</h6>
+                    <p class="mb-2">Desarrolladora Fullstack</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="https://www.linkedin.com/in/minalaf/" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-linkedin me-1"></i>LinkedIn
+                        </a>
+                        <a href="https://github.com/MagdaIG" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                        <a href="https://inalaf.ca/" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-globe me-1"></i>Portfolio
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <p class="mb-0">
+                        <i class="fas fa-code me-1"></i>
+                        Desarrollado con Node.js, Express, Sequelize y Bootstrap 5
+                    </p>
+                    <small>&copy; 2024 Todos los derechos reservados.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts personalizados -->
+    <script>
+        // Función para mostrar alertas
+        function showAlert(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type === 'success' ? 'success' : type === 'danger' ? 'danger' : type === 'warning' ? 'warning' : 'info'} alert-dismissible fade show position-fixed`;
+            alertDiv.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 300px;';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('orderForm');
+            const productoSelect = document.getElementById('producto');
+            const productoPersonalizado = document.getElementById('productoPersonalizado');
+
+            // Cargar usuarios
+            loadUsers();
+
+            // Validación en tiempo real
+            function validateField(field, validator) {
+                const isValid = validator(field.value);
+                field.classList.toggle('is-valid', isValid);
+                field.classList.toggle('is-invalid', !isValid);
+                return isValid;
+            }
+
+            // Validadores
+            const validators = {
+                usuario_id: (value) => value !== '',
+                producto: (value) => value !== '' || productoPersonalizado.value.trim() !== '',
+                cantidad: (value) => parseInt(value) >= 1 && parseInt(value) <= 100,
+                precio_unitario: (value) => value === '' || parseFloat(value) >= 0
+            };
+
+            // Event listeners para validación en tiempo real
+            Object.keys(validators).forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                if (field) {
+                    field.addEventListener('blur', () => validateField(field, validators[fieldName]));
+                    field.addEventListener('input', () => {
+                        if (field.classList.contains('is-invalid') || field.classList.contains('is-valid')) {
+                            validateField(field, validators[fieldName]);
+                        }
+                    });
+                }
+            });
+
+            // Validación especial para producto personalizado
+            productoPersonalizado.addEventListener('input', () => {
+                if (productoPersonalizado.value.trim() !== '') {
+                    productoSelect.classList.remove('is-invalid');
+                    productoSelect.classList.add('is-valid');
+                } else {
+                    validateField(productoSelect, validators.producto);
+                }
+            });
+
+            // Envío del formulario
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Validar todos los campos
+                let isValid = true;
+                Object.keys(validators).forEach(fieldName => {
+                    const field = document.getElementById(fieldName);
+                    if (field && !validateField(field, validators[fieldName])) {
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) {
+                    showAlert('Por favor, corrige los errores en el formulario', 'warning');
+                    return;
+                }
+
+                // Preparar datos
+                const formData = {
+                    usuario_id: parseInt(document.getElementById('usuario_id').value),
+                    producto: productoPersonalizado.value.trim() || document.getElementById('producto').value,
+                    cantidad: parseInt(document.getElementById('cantidad').value),
+                    precio_unitario: document.getElementById('precio_unitario').value ? parseFloat(document.getElementById('precio_unitario').value) : null,
+                    fecha_pedido: document.getElementById('fecha_pedido').value
+                };
+
+                // Enviar petición
+                fetch('/api/pedidos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showAlert('Pedido creado exitosamente', 'success');
+                        setTimeout(() => {
+                            window.location.href = '/pedidos';
+                        }, 1500);
+                    } else {
+                        if (data.errors) {
+                            // Mostrar errores de validación
+                            data.errors.forEach(error => {
+                                const field = document.getElementById(error.path || error.field);
+                                if (field) {
+                                    field.classList.add('is-invalid');
+                                    const feedback = field.nextElementSibling;
+                                    if (feedback && feedback.classList.contains('invalid-feedback')) {
+                                        feedback.textContent = error.msg || error.message;
+                                    }
+                                }
+                            });
+                            showAlert('Por favor, corrige los errores en el formulario', 'warning');
+                        } else {
+                            showAlert('Error al crear pedido: ' + data.message, 'danger');
+                        }
+                    }
+                })
+                .catch(error => {
+                    showAlert('Error al crear pedido', 'danger');
+                    console.error('Error:', error);
+                });
+            });
+        });
+
+        function loadUsers() {
+            fetch('/api/usuarios')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('usuario_id');
+
+                    if (data.success && data.data && data.data.length > 0) {
+                        select.innerHTML = '<option value="">Selecciona un cliente</option>' +
+                            data.data.map(user => `<option value="${user.id}">${user.nombre} (${user.email})</option>`).join('');
+                    } else {
+                        select.innerHTML = '<option value="">No hay usuarios registrados</option>';
+                        select.disabled = true;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar usuarios:', error);
+                    showAlert('Error al cargar usuarios', 'danger');
+                });
+        }
+    </script>
+</body>
+</html>

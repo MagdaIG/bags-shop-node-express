@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos - Handmade Bags Store</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Tema personalizado -->
+    <link href="/css/theme.css" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-shopping-bag me-2"></i>
+                Handmade Bags Store
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home me-1"></i>
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/usuarios">
+                            <i class="fas fa-users me-1"></i>
+                            Usuarios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pedidos">
+                            <i class="fas fa-shopping-cart me-1"></i>
+                            Pedidos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/productos">
+                            <i class="fas fa-gem me-1"></i>
+                            Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/acerca">
+                            <i class="fas fa-heart me-1"></i>
+                            Acerca de
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-plus me-1"></i>
+                            Crear
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/usuarios/crear">
+                                <i class="fas fa-user-plus me-2"></i>Nuevo Usuario
+                            </a></li>
+                            <li><a class="dropdown-item" href="/pedidos/crear">
+                                <i class="fas fa-cart-plus me-2"></i>Nuevo Pedido
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main style="margin-top: 80px;">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h1 class="hero-title fade-in-up">
+                            <i class="fas fa-gem me-3 text-gradient"></i>
+                            Catálogo de Productos Artesanales
+                        </h1>
+                        <p class="hero-subtitle fade-in-up stagger-1">
+                            Descubre nuestra colección completa de bolsos hechos a mano.
+                            Cada pieza es única y diseñada con amor y dedicación artesanal.
+                        </p>
+
+                        <!-- Barra de búsqueda -->
+                        <div class="search-bar fade-in-up stagger-2">
+                            <div class="input-group search-input-group">
+                                <span class="input-group-text search-icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <input type="text" class="form-control form-control-custom search-input" id="searchInput" placeholder="Buscar productos...">
+                            </div>
+                            <div class="search-results mt-3" id="searchResults" style="display: none;">
+                                <small class="text-muted">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    <span id="resultsCount">0</span> productos encontrados
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Productos -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row" id="productsContainer">
+                    <!-- Producto 1 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="book quilted bag" data-category="bolsos">
+                        <div class="product-card fade-in-up stagger-1">
+                            <div class="product-image">
+                                <div class="product-badge best-seller">Best Seller</div>
+                                <img src="/img/book-quilted-bag.png" alt="Book Quilted Bag" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Book Quilted Bag</h5>
+                                <p class="product-description">Bolso acolchado inspirado en libros clásicos, confeccionado a mano con técnicas tradicionales de acolchado. Cada puntada cuenta una historia de dedicación artesanal.</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.8)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$65.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="drawstring bag" data-category="bolsos">
+                        <div class="product-card fade-in-up stagger-2">
+                            <div class="product-image">
+                                <div class="product-badge new">Nuevo</div>
+                                <img src="/img/drawstring-bag.png" alt="Drawstring Bag" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Drawstring Bag</h5>
+                                <p class="product-description">Bolso con cordón artesanal, tejido a mano con materiales naturales. Perfecto para aventuras al aire libre, cada detalle refleja la pasión por la artesanía.</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.7)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$35.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="drawstring minibag" data-category="bolsos">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/drawstring-minibag.png" alt="Drawstring Minibag" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Drawstring Minibag</h5>
+                                <p class="product-description">Versión mini del bolso con cordón, perfecto para accesorios pequeños</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.9)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$20.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 4 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="laptop quilted bag" data-category="bolsos">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/laptop-quilted-bag.png" alt="Laptop Quilted Bag" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Laptop Quilted Bag</h5>
+                                <p class="product-description">Bolso acolchado especial para laptop, con protección y estilo elegante</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.9)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$75.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 5 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="makeup bag lavender" data-category="maquillaje">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/makeup-bag-lavender.png" alt="Makeup Bag Lavender" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Makeup Bag Lavender</h5>
+                                <p class="product-description">Bolso para maquillaje en tono lavanda, bordado a mano con patrones únicos. Cada flor y detalle es una obra de arte que refleja la belleza natural.</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.9)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$45.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 6 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="makeup quilted" data-category="maquillaje">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/makeup-quilted.png" alt="Makeup Quilted" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Makeup Quilted</h5>
+                                <p class="product-description">Bolso de maquillaje acolchado con diseño sofisticado y funcional</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.8)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$50.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 7 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="mini pouch" data-category="accesorios">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/mini-pouch.png" alt="Mini Pouch" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Mini Pouch</h5>
+                                <p class="product-description">Pequeño bolso artesanal ideal para accesorios, hecho a mano</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.9)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$25.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 8 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="money bag" data-category="accesorios">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/money-bag.png" alt="Money Bag" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Money Bag</h5>
+                                <p class="product-description">Bolso especial para dinero y documentos importantes, con seguridad</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.7)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$40.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 9 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="round bag" data-category="bolsos">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/round-bag.png" alt="Round Bag" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Round Bag</h5>
+                                <p class="product-description">Bolso redondo con diseño único, perfecto para ocasiones especiales</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.8)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$55.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 10 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="scrunchies" data-category="accesorios">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/scrunchies.png" alt="Scrunchies" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Scrunchies</h5>
+                                <p class="product-description">Colección de scrunchies artesanales en diferentes colores y estilos</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.9)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$15.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 11 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="tote bag" data-category="bolsos">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/tote-bag.png" alt="Tote Bag" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Tote Bag</h5>
+                                <p class="product-description">Bolso tote artesanal perfecto para el día a día, hecho a mano</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.8)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$55.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 12 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-name="mini bag quilted" data-category="bolsos">
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="/img/mini-bag-quilted.png" alt="Mini Bag Quilted" class="img-fluid">
+                                <div class="product-overlay">
+                                    <a href="/pedidos/crear" class="btn btn-primary-custom btn-custom">
+                                        <i class="fas fa-shopping-cart me-2"></i>
+                                        Agregar al Carrito
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <h5 class="product-title">Mini Bag Quilted</h5>
+                                <p class="product-description">Pequeño bolso acolchado con diseño elegante, perfecto para ocasiones especiales</p>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ms-2">(4.9)</span>
+                                </div>
+                                <div class="product-price">
+                                    <strong>$35.00 CAD</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-shopping-bag me-2"></i>Handmade Bags Store</h5>
+                    <p class="mb-0">Tienda online de handmade bags con gestión completa de usuarios y pedidos. <strong>Cada producto es único y hecho a mano</strong>.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h6 class="mb-3">Magdalena Inalaf G.</h6>
+                    <p class="mb-2">Desarrolladora Fullstack</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="https://www.linkedin.com/in/minalaf/" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-linkedin me-1"></i>LinkedIn
+                        </a>
+                        <a href="https://github.com/MagdaIG" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fab fa-github me-1"></i>GitHub
+                        </a>
+                        <a href="https://inalaf.ca/" target="_blank" class="btn btn-outline-light btn-sm">
+                            <i class="fas fa-globe me-1"></i>Portfolio
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <p class="mb-0">
+                        <i class="fas fa-code me-1"></i>
+                        Desarrollado con Node.js, Express, Sequelize y Bootstrap 5
+                    </p>
+                    <small>&copy; 2024 Todos los derechos reservados.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts personalizados -->
+    <script>
+        // Función para mostrar alertas
+        function showAlert(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type === 'success' ? 'success' : type === 'danger' ? 'danger' : type === 'warning' ? 'warning' : 'info'} alert-dismissible fade show position-fixed`;
+            alertDiv.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 300px;';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.parentNode.removeChild(alertDiv);
+                }
+            }, 5000);
+        }
+
+        // Función de búsqueda mejorada
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const productContainers = document.querySelectorAll('#productsContainer .col-lg-4, #productsContainer .col-md-6');
+            const searchResults = document.getElementById('searchResults');
+            const resultsCount = document.getElementById('resultsCount');
+            let visibleCount = 0;
+
+            if (searchTerm === '') {
+                // Si no hay término de búsqueda, mostrar todos los productos
+                productContainers.forEach(container => {
+                    container.style.display = 'flex';
+                });
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            productContainers.forEach(container => {
+                const productName = container.getAttribute('data-name').toLowerCase();
+                const productCategory = container.getAttribute('data-category').toLowerCase();
+
+                // Buscar también en el título y descripción del producto
+                const productTitle = container.querySelector('.product-title');
+                const productDescription = container.querySelector('.product-description');
+
+                const titleText = productTitle ? productTitle.textContent.toLowerCase() : '';
+                const descriptionText = productDescription ? productDescription.textContent.toLowerCase() : '';
+
+                // Buscar en todos los campos
+                if (productName.includes(searchTerm) ||
+                    productCategory.includes(searchTerm) ||
+                    titleText.includes(searchTerm) ||
+                    descriptionText.includes(searchTerm)) {
+                    container.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    container.style.display = 'none';
+                }
+            });
+
+            // Mostrar contador de resultados
+            resultsCount.textContent = visibleCount;
+            searchResults.style.display = 'block';
+        });
+
+        // Animación de entrada escalonada
+        document.addEventListener('DOMContentLoaded', function() {
+            const containers = document.querySelectorAll('#productsContainer .col-lg-4, #productsContainer .col-md-6');
+            containers.forEach((container, index) => {
+                const card = container.querySelector('.product-card');
+                if (card) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
