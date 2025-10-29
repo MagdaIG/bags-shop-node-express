@@ -249,6 +249,28 @@ GET /api/pedidos/usuario/:id
 - **Iconos Font Awesome** para mejor UX
 - **Búsqueda de productos** en tiempo real
 
+## Capturas de Pantalla
+
+### Página Principal
+![Página Principal](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/homepage.png)
+*Página de inicio con productos destacados y diseño artesanal*
+
+### Catálogo de Productos
+![Catálogo de Productos](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/products.png)
+*Catálogo completo con búsqueda en tiempo real*
+
+### Gestión de Usuarios
+![Gestión de Usuarios](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/users.png)
+*Interfaz para gestionar usuarios del sistema*
+
+### Gestión de Pedidos
+![Gestión de Pedidos](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/orders.png)
+*Sistema de gestión de pedidos con transacciones*
+
+### Vista Móvil
+![Vista Móvil](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/mobile.png)
+*Diseño responsive optimizado para dispositivos móviles*
+
 ## Validaciones y Seguridad
 
 ### Validaciones de Usuario
