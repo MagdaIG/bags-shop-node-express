@@ -1,7 +1,6 @@
 const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 const bcrypt = require('bcryptjs');
-const { body, validationResult } = require('express-validator');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const path = require('path');
@@ -9,6 +8,29 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Funciones de validaciÃ³n manuales
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+const validatePassword = (password) => {
+  return password && password.length >= 8 && /\d/.test(password);
+};
+
+const validateName = (name) => {
+  return name && name.length >= 2 && name.length <= 60;
+};
+
+const validateProduct = (product) => {
+  return product && product.length >= 1 && product.length <= 100;
+};
+
+const validateQuantity = (quantity) => {
+  const num = parseInt(quantity);
+  return !isNaN(num) && num > 0 && num <= 100;
+};
 
 // ConfiguraciÃ³n de Sequelize con SQLite
 const sequelize = new Sequelize({
@@ -45,11 +67,11 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
     unique: {
-      msg: 'Este email ya estÃ registrado'
+      msg: 'Este email ya estï¿½ registrado'
     },
     validate: {
       isEmail: {
-        msg: 'Debe ser un email vÃlido'
+        msg: 'Debe ser un email vï¿½lido'
       },
       notEmpty: {
         msg: 'El email es requerido'
@@ -62,14 +84,14 @@ const User = sequelize.define('User', {
     validate: {
       len: {
         args: [8, 255],
-        msg: 'La contraseÃa debe tener al menos 8 caracteres'
+        msg: 'La contraseï¿½a debe tener al menos 8 caracteres'
       },
       notEmpty: {
-        msg: 'La contraseÃa es requerida'
+        msg: 'La contraseï¿½a es requerida'
       },
       hasNumber(value) {
         if (!/\d/.test(value)) {
-          throw new Error('La contraseÃa debe contener al menos un nÃºmero');
+          throw new Error('La contraseï¿½a debe contener al menos un nÃºmero');
         }
       }
     }
@@ -160,7 +182,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(methodOverride('_method'));
 
-// Archivos estÃticos
+// Archivos estï¿½ticos
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware para pasar datos globales a las vistas
@@ -195,12 +217,12 @@ const errorHandler = (err, req, res, next) => {
     if (req.xhr || req.headers.accept?.indexOf('json') > -1) {
       return res.status(409).json({
         success: false,
-        message: 'Este email ya estÃ registrado'
+        message: 'Este email ya estï¿½ registrado'
       });
     }
     return res.status(409).render('error', {
       title: 'Email Duplicado',
-      error: { status: 409, message: 'Este email ya estÃ registrado' }
+      error: { status: 409, message: 'Este email ya estï¿½ registrado' }
     });
   }
 
@@ -356,7 +378,7 @@ app.get('/pedidos/crear', async (req, res) => {
 
 app.get('/productos', (req, res) => {
   res.render('productos', {
-    title: 'CatÃlogo de Productos'
+    title: 'Catï¿½logo de Productos'
   });
 });
 
@@ -369,20 +391,20 @@ const userValidation = [
     .withMessage('El nombre es requerido'),
   body('email')
     .isEmail()
-    .withMessage('Debe ser un email vÃlido')
+    .withMessage('Debe ser un email vï¿½lido')
     .notEmpty()
     .withMessage('El email es requerido'),
   body('password')
     .isLength({ min: 8 })
-    .withMessage('La contraseÃa debe tener al menos 8 caracteres')
+    .withMessage('La contraseï¿½a debe tener al menos 8 caracteres')
     .matches(/\d/)
-    .withMessage('La contraseÃa debe contener al menos un nÃºmero')
+    .withMessage('La contraseï¿½a debe contener al menos un nÃºmero')
 ];
 
 const orderValidation = [
   body('usuario_id')
     .isInt({ min: 1 })
-    .withMessage('Debe seleccionar un usuario vÃlido'),
+    .withMessage('Debe seleccionar un usuario vï¿½lido'),
   body('producto')
     .isLength({ min: 1, max: 100 })
     .withMessage('El producto debe tener entre 1 y 100 caracteres')
@@ -396,12 +418,23 @@ const orderValidation = [
 // Rutas API
 app.post('/api/usuarios', userValidation, async (req, res, next) => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
+    // Validaciones manuales
+    const errors = [];
+    if (!validateName(req.body.nombre)) {
+      errors.push('El nombre debe tener entre 2 y 60 caracteres');
+    }
+    if (!validateEmail(req.body.email)) {
+      errors.push('El email debe tener un formato vÃ¡lido');
+    }
+    if (!validatePassword(req.body.password)) {
+      errors.push('La contraseÃ±a debe tener al menos 8 caracteres y contener un nÃºmero');
+    }
+
+    if (errors.length > 0) {
       return res.status(400).json({
         success: false,
         message: 'Error de validaciÃ³n',
-        errors: errors.array().map(err => err.msg)
+        errors: errors
       });
     }
 
@@ -471,12 +504,23 @@ app.get('/api/usuarios/:id', async (req, res, next) => {
 
 app.put('/api/usuarios/:id', userValidation, async (req, res, next) => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
+    // Validaciones manuales
+    const errors = [];
+    if (!validateName(req.body.nombre)) {
+      errors.push('El nombre debe tener entre 2 y 60 caracteres');
+    }
+    if (!validateEmail(req.body.email)) {
+      errors.push('El email debe tener un formato vÃ¡lido');
+    }
+    if (!validatePassword(req.body.password)) {
+      errors.push('La contraseÃ±a debe tener al menos 8 caracteres y contener un nÃºmero');
+    }
+
+    if (errors.length > 0) {
       return res.status(400).json({
         success: false,
         message: 'Error de validaciÃ³n',
-        errors: errors.array().map(err => err.msg)
+        errors: errors
       });
     }
 
@@ -731,18 +775,18 @@ async function startServer() {
   await initializeDatabase();
 
   app.listen(PORT, () => {
-    console.log(`Start: Servidor ejecutÃndose en http://localhost:${PORT}`);
+    console.log(`Start: Servidor ejecutï¿½ndose en http://localhost:${PORT}`);
     console.log(`Chart: Entorno: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`— Base de datos: SQLite`);
+    console.log(`ï¿½ Base de datos: SQLite`);
     console.log(`\nSparkle: CaracterÃ­sticas disponibles:`);
     console.log(`   Web: Interfaz web completa`);
-    console.log(`   Bag: Productos artesanales con imÃgenes`);
-    console.log(`   ¥ GestiÃ³n de usuarios`);
-    console.log(`   ¦ GestiÃ³n de pedidos`);
+    console.log(`   Bag: Productos artesanales con imï¿½genes`);
+    console.log(`   ï¿½ GestiÃ³n de usuarios`);
+    console.log(`   ï¿½ GestiÃ³n de pedidos`);
     console.log(`   Info: Tema pastel personalizado`);
     console.log(`    Transacciones de base de datos`);
     console.log(`   Success: Validaciones completas`);
-    console.log(`\n— Accede a: http://localhost:${PORT}`);
+    console.log(`\nï¿½ Accede a: http://localhost:${PORT}`);
     console.log(`\nList: Endpoints API disponibles:`);
     console.log(`   POST /api/usuarios - Crear usuario`);
     console.log(`   GET /api/usuarios - Listar usuarios`);
