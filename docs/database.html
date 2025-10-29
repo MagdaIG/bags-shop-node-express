@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos - Handmade Bags Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #2c3e50;
+            --bg-light: #f8f9fa;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e8f4f8 100%);
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: 600;
+        }
+
+        .mermaid {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .field-type {
+            background: var(--accent-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .field-constraint {
+            background: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin-left: 5px;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .db-info {
+            background: linear-gradient(135deg, var(--accent-color) 0%, #7dd3c8 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-badge {
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .tech-badge.sqlite {
+            background: linear-gradient(135deg, #003b57 0%, #004d73 100%);
+        }
+
+        .tech-badge.sequelize {
+            background: linear-gradient(135deg, #52b0e7 0%, #1e88e5 100%);
+        }
+
+        .tech-badge.transacciones {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-database me-2"></i>
+                Base de Datos Documentation
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html">← Volver al Inicio</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="display-4 fw-bold text-primary">
+                    <i class="fas fa-database me-3"></i>
+                    Base de Datos
+                </h1>
+                <p class="lead">Estructura, modelos, relaciones y diagramas de la base de datos</p>
+            </div>
+        </div>
+
+        <!-- Database Overview -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="db-info">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h3 class="mb-3">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Información General
+                            </h3>
+                            <p class="mb-2">
+                                <strong>Tipo:</strong> SQLite (Base de datos embebida)
+                            </p>
+                            <p class="mb-2">
+                                <strong>ORM:</strong> Sequelize (Object-Relational Mapping)
+                            </p>
+                            <p class="mb-2">
+                                <strong>Archivo:</strong> database.sqlite
+                            </p>
+                            <p class="mb-0">
+                                <strong>Características:</strong> Transacciones, validaciones, relaciones
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <span class="tech-badge sqlite">SQLite</span>
+                            <span class="tech-badge sequelize">Sequelize ORM</span>
+                            <span class="tech-badge transacciones">Transacciones</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ER Diagram -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mb-0">
+                            <i class="fas fa-project-diagram me-2"></i>
+                            Diagrama Entidad-Relación (ER)
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mermaid">
+erDiagram
+    User {
+        int id PK
+        string nombre
+        string email UK
+        string password
+        datetime createdAt
+        datetime updatedAt
+    }
+
+    Order {
+        int id PK
+        int usuario_id FK
+        string producto
+        int cantidad
+        date fecha_pedido
+        datetime createdAt
+        datetime updatedAt
+    }
+
+    User ||--o{ Order : "has many"
