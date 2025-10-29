@@ -252,23 +252,23 @@ GET /api/pedidos/usuario/:id
 ## Capturas de Pantalla
 
 ### Página Principal
-![Página Principal](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/homepage.png)
+![Página Principal](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/images/readme/img/readme/homepage.png)
 *Página de inicio con productos destacados y diseño artesanal*
 
 ### Catálogo de Productos
-![Catálogo de Productos](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/products.png)
+![Catálogo de Productos](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/images/readme/img/readme/products.png)
 *Catálogo completo con búsqueda en tiempo real*
 
 ### Gestión de Usuarios
-![Gestión de Usuarios](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/users.png)
+![Gestión de Usuarios](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/images/readme/img/readme/users.png)
 *Interfaz para gestionar usuarios del sistema*
 
 ### Gestión de Pedidos
-![Gestión de Pedidos](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/orders.png)
+![Gestión de Pedidos](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/images/readme/img/readme/orders.png)
 *Sistema de gestión de pedidos con transacciones*
 
 ### Vista Móvil
-![Vista Móvil](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/img/readme/mobile.png)
+![Vista Móvil](https://raw.githubusercontent.com/MagdaIG/bags-shop-node-express/master/public/images/readme/img/readme/mobile.png)
 *Diseño responsive optimizado para dispositivos móviles*
 
 ## Validaciones y Seguridad
